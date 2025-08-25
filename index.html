@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FinanceGrow — Be smart with your money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1320;
+      --surface:#121a2a;
+      --text:#e8f1ff;
+      --muted:#9fb3d1;
+      --brand:#2dd4bf; /* teal */
+      --brand-2:#60a5fa; /* blue */
+      --accent:#fbbf24; /* gold */
+      --shadow: 0 10px 30px rgba(0,0,0,.3);
+    }
+    [data-theme="light"]{
+      --bg:#f6f8fb;
+      --surface:#ffffff;
+      --text:#0b1320;
+      --muted:#5b6b83;
+      --brand:#0ea5e9;
+      --brand-2:#10b981;
+      --accent:#f59e0b;
+      --shadow: 0 8px 20px rgba(12, 74, 110,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; 
+      background: radial-gradient(1200px 800px at 70% -10%, rgba(99,102,241,.25),transparent),
+                  radial-gradient(900px 600px at -10% 30%, rgba(45,212,191,.18),transparent),
+                  var(--bg);
+      color:var(--text);
+      transition: background .3s ease,color .3s ease;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+    header{position:sticky; top:0; z-index:10; backdrop-filter: blur(8px);}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; 
+      padding:14px 20px; border-radius:16px; background:color-mix(in oklab, var(--surface) 80%, transparent);
+      box-shadow: var(--shadow);
+    }
+    .logo{display:flex; gap:10px; align-items:center}
+    .logo-mark{width:34px;height:34px;border-radius:10px; background: linear-gradient(135deg,var(--brand),var(--brand-2)); position:relative; overflow:hidden}
+    .logo-mark::after{content:""; position:absolute; inset:6px; border-radius:6px; border:2px solid rgba(255,255,255,.8)}
+    .logo h1{font-size:18px; margin:0; font-weight:800; letter-spacing:.2px}
+    .nav-actions{display:flex; gap:10px; align-items:center}
+    .btn{padding:10px 14px; border-radius:12px; border:1px solid color-mix(in oklab, var(--text) 16%, transparent); background:var(--surface); color:var(--text); font-weight:600}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); border:none; color:#fff}
+    .toggle, select{padding:10px 12px; border-radius:12px; background:var(--surface); color:var(--text); border:1px solid color-mix(in oklab, var(--text) 16%, transparent)}/* Hero */
+.hero{display:grid; grid-template-columns:1.05fr .95fr; gap:28px; align-items:center; padding:56px 20px}
+.headline{font-size:44px; line-height:1.1; margin:0 0 14px 0; font-weight:800}
+.sub{color:var(--muted); margin:0 0 20px 0}
+.cta{display:flex; gap:12px; flex-wrap:wrap}
+.hero-card{background:var(--surface); border:1px solid color-mix(in oklab, var(--text) 16%, transparent); padding:18px; border-radius:18px; box-shadow:var(--shadow)}
+
+/* Animated chart */
+.chart{height:260px; display:flex; gap:10px; align-items:flex-end; justify-content:space-between; padding:16px; border-radius:16px; background:linear-gradient(180deg, color-mix(in oklab, var(--surface) 88%, transparent), color-mix(in oklab, var(--surface) 70%, transparent));}
+.bar{flex:1; border-radius:10px 10px 4px 4px; background:linear-gradient(180deg, var(--brand-2), var(--brand)); position:relative; overflow:hidden}
+.bar::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.2), transparent);}
+.bar[data-h="20"]{height:20%}
+.bar[data-h="40"]{height:40%}
+.bar[data-h="60"]{height:60%}
+.bar[data-h="80"]{height:80%}
+.bar{animation:grow 1.6s ease forwards; transform-origin:bottom}
+@keyframes grow{from{transform:scaleY(.2)} to{transform:scaleY(1)}}
+
+/* Features */
+.features{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; padding:20px}
+.card{background:var(--surface); border:1px solid color-mix(in oklab, var(--text) 16%, transparent); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
+.card h3{margin:0 0 8px 0}
+.muted{color:var(--muted)}
+
+/* Pricing */
+.pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; padding:10px}
+.price{position:relative; overflow:hidden}
+.price .tag{position:absolute; top:14px; right:-30px; transform:rotate(35deg); background:var(--accent); color:#111; padding:6px 40px; font-weight:800}
+
+/* Testimonials */
+.testimonials{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.quote{font-style:italic}
+
+/* Newsletter */
+.newsletter{display:flex; gap:12px; flex-wrap:wrap}
+.input{padding:12px 14px; border-radius:12px; border:1px solid color-mix(in oklab, var(--text) 16%, transparent); background:var(--surface); color:var(--text); min-width:260px}
+
+/* Footer */
+footer{margin-top:50px; padding:30px 20px; border-top:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero{grid-template-columns:1fr; padding-top:28px}
+  .features,.pricing,.testimonials{grid-template-columns:1fr}
+}
+
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="container">
+    <header>
+      <div class="nav">
+        <div class="logo">
+          <div class="logo-mark" aria-hidden="true"></div>
+          <h1>FinanceGrow</h1>
+        </div>
+        <div class="nav-actions">
+          <select id="lang" aria-label="Language select" class="toggle">
+            <option value="en" selected>English</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+          <button id="theme" class="toggle" aria-label="Toggle theme">🌙 Dark</button>
+          <a href="#download" class="btn">Download</a>
+          <a href="#pricing" class="btn primary">Go Premium</a>
+        </div>
+      </div>
+    </header><!-- Hero -->
+<section class="hero">
+  <div>
+    <h2 class="headline" data-i18n="hero.title">Be smart with your money by using FinanceGrow</h2>
+    <p class="sub" data-i18n="hero.sub">Track, plan and grow your wealth with simple tools, animated insights and AI guidance.</p>
+    <div class="cta">
+      <a href="#download" class="btn primary" data-i18n="cta.download">Download APK (soon)</a>
+      <a href="#features" class="btn" data-i18n="cta.learn">Explore Features</a>
+    </div>
+    <div style="margin-top:18px" class="muted" data-i18n="hero.note">Dark/Light mode, multi-language and finance animations included.</div>
+  </div>
+  <div class="hero-card">
+    <div class="chart" aria-label="Animated growth chart">
+      <div class="bar" data-h="20" style="height:20%"></div>
+      <div class="bar" data-h="40" style="height:40%"></div>
+      <div class="bar" data-h="60" style="height:60%"></div>
+      <div class="bar" data-h="80" style="height:80%"></div>
+    </div>
+    <div class="muted" style="margin-top:10px" data-i18n="chart.caption">Your money trend: visual growth powered by smart planning.</div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="features">
+  <div class="card">
+    <h3 data-i18n="f1.title">Profit Estimator</h3>
+    <p class="muted" data-i18n="f1.text">Estimate returns from ETFs, stocks and dividends. See ROI & break‑even clearly.</p>
+  </div>
+  <div class="card">
+    <h3 data-i18n="f2.title">AI Finance Coach</h3>
+    <p class="muted" data-i18n="f2.text">Ask simple questions. Get clear steps to budget, invest and save more.</p>
+  </div>
+  <div class="card">
+    <h3 data-i18n="f3.title">Tax & Planning</h3>
+    <p class="muted" data-i18n="f3.text">Learn legal ways to save tax and plan goals with bite‑size lessons.</p>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" style="margin-top:24px">
+  <h2 style="margin:0 0 10px 0" data-i18n="price.title">Choose your plan</h2>
+  <p class="muted" style="margin:0 0 14px 0" data-i18n="price.sub">No ads on Premium. Weekly, Monthly or Yearly.</p>
+  <div class="pricing">
+    <div class="card price">
+      <div class="tag">Weekly</div>
+      <h3>Starter</h3>
+      <p class="muted" data-i18n="price.p1">Basic premium tools</p>
+      <button class="btn" style="margin-top:8px" data-i18n="price.cta">Coming Soon</button>
+    </div>
+    <div class="card price" style="border:2px solid var(--brand)">
+      <div class="tag">Monthly</div>
+      <h3>Pro</h3>
+      <p class="muted" data-i18n="price.p2">All features unlocked</p>
+      <button class="btn primary" style="margin-top:8px" data-i18n="price.cta">Coming Soon</button>
+    </div>
+    <div class="card price">
+      <div class="tag">Yearly</div>
+      <h3>Elite</h3>
+      <p class="muted" data-i18n="price.p3">Best value + bonuses</p>
+      <button class="btn" style="margin-top:8px" data-i18n="price.cta">Coming Soon</button>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section style="margin-top:28px">
+  <h2 data-i18n="t.title">What people will love</h2>
+  <div class="testimonials">
+    <div class="card"><p class="quote" data-i18n="t.q1">“Clean. Simple. It actually makes me want to save.”</p><div class="muted">— Early Tester</div></div>
+    <div class="card"><p class="quote" data-i18n="t.q2">“The profit chart makes goals feel real.”</p><div class="muted">— Beta User</div></div>
+    <div class="card"><p class="quote" data-i18n="t.q3">“AI tips in plain language. No jargon.”</p><div class="muted">— Student</div></div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section style="margin-top:28px">
+  <h2 data-i18n="n.title">Get early access & tips</h2>
+  <p class="muted" data-i18n="n.sub">Join the list to get launch updates and money guides.</p>
+  <form class="newsletter" onsubmit="event.preventDefault(); alert(dict[currentLang].notice); this.reset();">
+    <input type="email" class="input" placeholder="you@example.com" required />
+    <button class="btn primary" data-i18n="n.cta">Subscribe</button>
+  </form>
+</section>
+
+<!-- Download -->
+<section id="download" style="margin-top:28px">
+  <div class="card">
+    <h2 style="margin-top:0" data-i18n="d.title">Download FinanceGrow</h2>
+    <p class="muted" data-i18n="d.sub">Android APK and Web App links will appear here after release.</p>
+    <div class="cta">
+      <a class="btn" href="#" aria-disabled="true" data-i18n="d.apk">APK (coming soon)</a>
+      <a class="btn" href="#" aria-disabled="true" data-i18n="d.web">Open Web App (coming soon)</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="muted">© 2025 FinanceGrow — Developed by Sahil Dalal • Contact: <a href="mailto:dalal102002@gmail.com">dalal102002@gmail.com</a></div>
+</footer>
+
+  </div>  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('theme');
+    const root = document.body;
+    const applyLabel = ()=> themeBtn.textContent = root.getAttribute('data-theme')==='light' ? '☀️ Light' : '🌙 Dark';
+    themeBtn.addEventListener('click', ()=>{
+      const current = root.getAttribute('data-theme');
+      root.setAttribute('data-theme', current==='light' ? 'dark' : 'light');
+      applyLabel();
+    });
+    applyLabel();
+
+    // Simple i18n (English + Hindi)
+    const dict = {
+      en:{
+        'hero.title':'Be smart with your money by using FinanceGrow',
+        'hero.sub':'Track, plan and grow your wealth with simple tools, animated insights and AI guidance.',
+        'hero.note':'Dark/Light mode, multi-language and finance animations included.',
+        'cta.download':'Download APK (soon)',
+        'cta.learn':'Explore Features',
+        'chart.caption':'Your money trend: visual growth powered by smart planning.',
+        'f1.title':'Profit Estimator','f1.text':'Estimate returns from ETFs, stocks and dividends. See ROI & break‑even clearly.',
+        'f2.title':'AI Finance Coach','f2.text':'Ask simple questions. Get clear steps to budget, invest and save more.',
+        'f3.title':'Tax & Planning','f3.text':'Learn legal ways to save tax and plan goals with bite‑size lessons.',
+        'price.title':'Choose your plan','price.sub':'No ads on Premium. Weekly, Monthly or Yearly.','price.p1':'Basic premium tools','price.p2':'All features unlocked','price.p3':'Best value + bonuses','price.cta':'Coming Soon',
+        't.title':'What people will love','t.q1':'“Clean. Simple. It actually makes me want to save.”','t.q2':'“The profit chart makes goals feel real.”','t.q3':'“AI tips in plain language. No jargon.”',
+        'n.title':'Get early access & tips','n.sub':'Join the list to get launch updates and money guides.','n.cta':'Subscribe','notice':'Thanks! You\'re on the list.',
+        'd.title':'Download FinanceGrow','d.sub':'Android APK and Web App links will appear here after release.','d.apk':'APK (coming soon)','d.web':'Open Web App (coming soon)'
+      },
+      hi:{
+        'hero.title':'FinanceGrow के साथ पैसों का स्मार्ट इस्तेमाल करें',
+        'hero.sub':'साधारण टूल्स, एनिमेटेड इनसाइट्स और AI गाइडेंस के साथ अपनी संपत्ति ट्रैक, प्लान और ग्रो करें।',
+        'hero.note':'डार्क/लाइट मोड, बहुभाषी सपोर्ट और फाइनेंस ऐनिमेशन शामिल।',
+        'cta.download':'APK डाउनलोड (जल्द)',
+        'cta.learn':'फ़ीचर्स देखें',
+        'chart.caption':'स्मार्ट प्लानिंग से आपकी ग्रोथ—ग्राफ़ में साफ दिखे।',
+        'f1.title':'प्रॉफिट एस्टीमेटर','f1.text':'ETF, स्टॉक और डिविडेंड से रिटर्न का अनुमान लगाएँ। ROI और ब्रेक‑ईवन देखें।',
+        'f2.title':'AI फ़ाइनेंस कोच','f2.text':'सादे सवाल पूछें। बजट, निवेश और बचत के स्पष्ट स्टेप्स पाएं।',
+        'f3.title':'टैक्स और प्लानिंग','f3.text':'क़ानूनी तरीक़ों से टैक्स बचाएँ और लक्ष्यों की योजना बनाएं।',
+        'price.title':'अपनी योजना चुनें','price.sub':'प्रीमियम पर कोई विज्ञापन नहीं। साप्ताहिक, मासिक या वार्षिक।','price.p1':'बेसिक प्रीमियम टूल्स','price.p2':'सभी फीचर अनलॉक','price.p3':'सबसे बेहतर वैल्यू','price.cta':'जल्द आ रहा है',
+        't.title':'लोगों को क्या पसंद आएगा','t.q1':'“क्लीन और सिंपल—बचत करने का मन करता है।”','t.q2':'“प्रॉफिट ग्राफ़ से लक्ष्य असली लगते हैं।”','t.q3':'“AI टिप्स आम भाषा में—नो जार्गन।”',
+        'n.title':'अर्ली एक्सेस और टिप्स','n.sub':'लॉन्च अपडेट और मनी गाइड पाने के लिए जुड़ें।','n.cta':'सब्सक्राइब','notice':'धन्यवाद! आपको सूची में जोड़ दिया गया है।',
+        'd.title':'FinanceGrow डाउनलोड करें','d.sub':'एंड्रॉइड APK और वेब लिंक रिलीज़ के बाद यहाँ आएँगे।','d.apk':'APK (जल्द)','d.web':'वेब ऐप खोलें (जल्द)'
+      }
+    };
+    let currentLang = 'en';
+    const langSel = document.getElementById('lang');
+    const applyLang = (lang)=>{
+      currentLang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        el.textContent = dict[lang][key] || el.textContent;
+      });
+    };
+    langSel.addEventListener('change', e=> applyLang(e.target.value));
+    applyLang('en');
+  </script></body>
+</html>
